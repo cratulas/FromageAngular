@@ -16,19 +16,19 @@ export class HomeComponent implements OnInit {
       title: 'Nueva Tienda en París',
       content: '¡Hemos abierto una nueva tienda en el centro de París!',
       img: 'assets/img/store_paris.jpg',
-      url: '/news/1',
+      url: '/noticia1',
     },
     {
       title: 'Lanzamiento de Nuevos Quesos',
       content: 'Prueba nuestros nuevos sabores de queso artesanal.',
       img: 'assets/img/new_cheeses.jpg',
-      url: '/news/2',
+      url: '/noticia2',
     },
     {
       title: 'Evento de Degustación',
       content: 'Únete a nuestro evento de degustación el próximo sábado.',
       img: 'assets/img/tasting_event.jpg',
-      url: '/news/3',
+      url: '/noticia3',
     },
   ];
 

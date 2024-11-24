@@ -8,11 +8,19 @@ import { ShopComponent } from './pages/shop/shop.component';
 import { AdminComponent } from './pages/admin/admin.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
+import { Noticia1Component } from './pages/noticia1/noticia1.component';
+import { Noticia2Component } from './pages/noticia2/noticia2.component';
+import { Noticia3Component } from './pages/noticia3/noticia3.component';
 import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
+import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
+
 
 export const routes: Routes = [
 
     { path: '', component: HomeComponent },
+    { path: 'noticia1', component: UnderConstructionComponent },
+    { path: 'noticia2', component: Noticia2Component },
+    { path: 'noticia3', component: Noticia3Component },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'profile', component: ProfileComponent },

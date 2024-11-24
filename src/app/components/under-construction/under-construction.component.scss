@@ -1,0 +1,117 @@
+/* Fondo y estilo general */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  /* Texto principal */
+  h1 {
+    font-size: 3rem;
+    color: #333;
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  p {
+    font-size: 1.5rem;
+    color: #555;
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  /* Icono animado */
+  .icono-animado {
+    font-size: 5rem;
+    color: #ff9800;
+    animation: bounce 1.5s infinite;
+  }
+  
+  /* Animaciones */
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Barra de progreso */
+  .progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 2rem auto;
+    height: 20px;
+    max-width: 500px;
+  }
+  
+  .progress-bar-inner {
+    width: 100%;
+    height: 100%;
+    background-color: #ff9800;
+    animation: progress 5s ease-in-out forwards;
+  
+    @media (prefers-reduced-motion: reduce) {
+      animation: none; /* Desactiva la animación si no es necesaria */
+    }
+  }
+  
+  @keyframes progress {
+    from {
+      width: 0;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+  /* Botón de regreso */
+  .btn-home {
+    margin-top: 2rem;
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    background-color: #002884;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    position: relative; /* Asegura que el z-index se aplique */
+    z-index: 10; /* Coloca el botón en una capa superior */
+  }
+  
+  .btn-home:hover {
+    background-color: #001a5b;
+    color: #fff;
+  }
+  
+
+  .container {
+    position: relative; /* Para asegurar que no haya elementos superpuestos */
+    z-index: 1;
+  }
+  
