@@ -1,0 +1,21 @@
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  z-index: 1050; 
+  position: relative;
+  color: #000000 !important; ;
+
+  .nav-link {
+    color: #000000;
+
+    &:hover {
+      color: #007bff;
+    }
+  }
+
+  .navbar-brand .nav-link.active{
+    color: #007bff;
+    font-weight: bold;
+  }
+}
+

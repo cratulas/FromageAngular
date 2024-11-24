@@ -1,0 +1,150 @@
+<div class="container my-3">
+  <h2 id="welcomeMessage" class="text-center">¡Bienvenido!</h2>
+</div>
+
+<header class="bg-custom text-white text-center py-4">
+  <h1>Fromage</h1>
+  <p>Especialistas en Quesos Franceses y de todo el mundo</p>
+</header>
+
+<!-- Menú Intermedio -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-menu">
+  <div class="container">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#intermediateMenu"
+      aria-controls="intermediateMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="intermediateMenu">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#news-carousel-inner">Noticias</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#special-offer">Oferta del Día</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#reviews-section">Reseñas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#newsletterForm">Inscríbete</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shop">Ordena en línea</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Noticias -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">Noticias y Actualidades</h2>
+  <div id="carouselNoticias" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div
+        class="carousel-item"
+        *ngFor="let item of news; let i = index"
+        [class.active]="i === 0"
+      >
+        <a [routerLink]="item.url">
+          <img [src]="item.img" class="d-block w-100" [alt]="item.title" />
+        </a>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>{{ item.title }}</h5>
+          <p>{{ item.content }}</p>
+        </div>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselNoticias"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselNoticias"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+</section>
+
+<!-- Oferta del Día -->
+<section class="container my-5" id="special-offer">
+  <h2 class="text-center mb-4">Oferta Especial del Día</h2>
+  <div class="card text-center">
+    <img
+      [src]="specialOffer.img"
+      class="card-img-top special-offer-image"
+      [alt]="specialOffer.name"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ specialOffer.name }}</h5>
+      <p class="card-text">{{ specialOffer.description }}</p>
+      <a routerLink="/shop" class="btn btn-primary">Ir a la Tienda</a>
+    </div>
+  </div>
+</section>
+
+<!-- Reseñas -->
+<section class="container my-5" id="reviews-section">
+  <h2 class="text-center mb-4">Reseñas de Nuestros Clientes</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let review of reviews">
+      <div class="card p-3 mb-3">
+        <h5>{{ review.name }}</h5>
+        <p>{{ review.comment }}</p>
+        <div>{{ '⭐'.repeat(review.rating) }}</div>
+      </div>
+    </div>
+  </div>
+  <a routerLink="/reviews" class="btn btn-primary text-center">Ver más</a>
+</section>
+
+<!-- Formulario de Newsletter -->
+<section class="bg-custom text-light container-fluid py-4" id="newsletterForm">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2 class="text-center text-light">Suscríbete a Nuestro Boletín</h2>
+      <p class="text-center">Recibe ofertas exclusivas y novedades sobre nuestros productos.</p>
+      <form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="emailNewsletter" class="form-label">Correo Electrónico</label>
+          <input
+            type="email"
+            class="form-control"
+            id="emailNewsletter"
+            formControlName="email"
+            placeholder="ejemplo@correo.com"
+            [ngClass]="{
+              'is-invalid': newsletterForm.get('email')?.invalid && newsletterForm.get('email')?.touched
+            }"
+          />
+          <div *ngIf="newsletterForm.get('email')?.invalid && newsletterForm.get('email')?.touched" class="invalid-feedback">
+            Por favor, ingresa un correo válido.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-light w-100 my-3">Suscribirse</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-custom text-white text-center py-4">
+  <p>&copy; 2024 Fromage. Todos los derechos reservados.</p>
+</footer>
