@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -46,8 +47,9 @@ export class HomeComponent implements OnInit {
 
   specialOffer: any;
   newsletterForm: FormGroup;
+  userEmail: string | null = null;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.newsletterForm = this.fb.group({
       email: [
         '',
@@ -62,6 +64,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectRandomOffer();
+
+    this.authService.userEmail$.subscribe((email) => {
+      this.userEmail = email;
+    });
   }
 
   selectRandomOffer(): void {

@@ -39,24 +39,26 @@ export class LoginComponent implements OnInit {
       this.errorMessage = 'Por favor, completa todos los campos correctamente.';
       return;
     }
-
+  
     const { email, password } = this.loginForm.value;
-
+  
+    // Combina los usuarios predeterminados y almacenados en localStorage
     const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
     const allUsers = [...this.defaultUsers, ...storedUsers];
-
+  
+    // Busca al usuario con las credenciales ingresadas
     const user = allUsers.find(u => u.email === email && u.password === password);
-
+  
     if (user) {
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userRole', user.role);
-      localStorage.setItem('userEmail', user.email);
-
-      this.authService.login(user.role);
-
+      // Inicia sesión pasando tanto el role como el email
+      this.authService.login(user.role, email);
+  
+      // Redirige al usuario a la página principal
       this.router.navigate(['/']);
     } else {
+      // Muestra un mensaje de error si las credenciales no coinciden
       this.errorMessage = 'Correo electrónico o contraseña incorrectos.';
     }
   }
+  
 }

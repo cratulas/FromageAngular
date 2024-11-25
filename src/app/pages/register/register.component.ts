@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    // Asignar rol automáticamente (ejemplo: "usuario" por defecto)
+    // Asignar rol automáticamente 
     const role = email === 'admin@example.com' ? 'admin' : 'usuario';
 
     const newUser = { name, email, password, role };
