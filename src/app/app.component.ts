@@ -9,4 +9,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   styleUrls: ['./app.component.scss'],
   imports: [NavbarComponent, RouterOutlet], 
 })
-export class AppComponent {}
+export class AppComponent {
+  title = 'fromage-app';
+}

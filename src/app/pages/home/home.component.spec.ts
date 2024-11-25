@@ -1,23 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
+import { AuthService } from '../../services/auth.service';
+import { of } from 'rxjs';
 
 describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+  let authServiceMock: any;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HomeComponent]
-    })
-    .compileComponents();
+    authServiceMock = {
+      getEmail: () => 'usuario@example.com',
+    };
 
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    await TestBed.configureTestingModule({
+      imports: [HomeComponent],
+      providers: [{ provide: AuthService, useValue: authServiceMock }],
+    }).compileComponents();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('debería mostrar el mensaje de bienvenida con el correo electrónico', () => {
+    const fixture = TestBed.createComponent(HomeComponent);
+    const component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('#welcomeMessage')?.textContent).toContain(
+      '¡Bienvenido! usuario@example.com'
+    );
   });
 });

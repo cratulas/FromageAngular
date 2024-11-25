@@ -1,23 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { UnderConstructionComponent } from './under-construction.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('UnderConstructionComponent', () => {
-  let component: UnderConstructionComponent;
-  let fixture: ComponentFixture<UnderConstructionComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UnderConstructionComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(UnderConstructionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [UnderConstructionComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: { params: of({}) }, // Mock de ActivatedRoute
+        },
+      ],
+    }).compileComponents();
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
+    const fixture = TestBed.createComponent(UnderConstructionComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
