@@ -1,1 +1,36 @@
-<p>shop works!</p>
+<div class="container my-5">
+    <h1 class="text-center">Fromage</h1>
+    <p class="text-center">Especialistas en Quesos Franceses y de todo el mundo</p>
+  
+    <!-- Barra de Búsqueda -->
+    <div class="input-group mb-3">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Buscar producto"
+        [(ngModel)]="searchQuery"
+        (input)="searchProducts()"
+      />
+      <button class="btn btn-outline-secondary" (click)="searchProducts()">Buscar</button>
+    </div>
+  
+    <!-- Productos -->
+    <h2 class="text-center mb-4">Nuestros Productos</h2>
+    <div class="row">
+      <div class="col-md-4" *ngFor="let product of filteredProducts">
+        <div class="card mb-4">
+          <img [src]="product.img" class="card-img-top" [alt]="product.name" />
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">${{ product.price }}</p>
+            <button class="btn btn-primary" (click)="addToCart(product)">Agregar al Carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="text-center mt-4">
+      <a routerLink="/cart" class="btn btn-primary">Ir al carrito</a>
+    </div>
+  </div>
+  

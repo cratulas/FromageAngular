@@ -13,6 +13,7 @@ import { Noticia2Component } from './pages/noticia2/noticia2.component';
 import { Noticia3Component } from './pages/noticia3/noticia3.component';
 import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 
 export const routes: Routes = [
@@ -30,6 +31,7 @@ export const routes: Routes = [
     { path: 'reviews', component: ReviewsComponent },
     { path: 'orders', component: OrdersComponent },
     { path: 'order-tracking/:id', component: OrderTrackingComponent },
+    { path: 'cart', component: CartComponent },
     { path: '**', redirectTo: '' }
 
 ];

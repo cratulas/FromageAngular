@@ -1,9 +1,4 @@
-.bg-custom {
-    background-color: #002884;
-    color: #ffffff;
-  }
-  
-  .card-img-top {
+.card-img-top {
     height: 200px;
     object-fit: cover;
   }
@@ -15,6 +10,16 @@
     &:hover {
       background-color: #001a5b;
       border-color: #001a5b;
+    }
+  }
+  
+  .btn-danger {
+    background-color: #f44336;
+    border-color: #f44336;
+  
+    &:hover {
+      background-color: #c62828;
+      border-color: #c62828;
     }
   }
   
