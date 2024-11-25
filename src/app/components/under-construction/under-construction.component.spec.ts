@@ -10,7 +10,7 @@ describe('UnderConstructionComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: { params: of({}) }, // Mock de ActivatedRoute
+          useValue: { params: of({}) }, 
         },
       ],
     }).compileComponents();
