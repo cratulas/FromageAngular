@@ -1,44 +1,45 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  isLoggedIn: boolean = false;
-  userRole: string | null = null;
+  private loggedInStatus = new BehaviorSubject<boolean>(false);
+  private userRole = new BehaviorSubject<string | null>(null);
+
+  loggedInStatus$ = this.loggedInStatus.asObservable();
+  userRole$ = this.userRole.asObservable();
 
   constructor() {
-    this.checkInitialLoginState();
-  }
-
-  // Verifica si localStorage está disponible
-  isLocalStorageAvailable(): boolean {
-    return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
-  }
-
-  checkInitialLoginState(): void {
-    if (this.isLocalStorageAvailable()) {
-      this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-      this.userRole = localStorage.getItem('userRole');
+    if (this.isBrowser()) {
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+      const role = localStorage.getItem('userRole');
+      this.loggedInStatus.next(isLoggedIn);
+      this.userRole.next(role);
     }
   }
 
   login(role: string): void {
-    if (this.isLocalStorageAvailable()) {
+    if (this.isBrowser()) {
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('userRole', role);
     }
-    this.isLoggedIn = true;
-    this.userRole = role;
+    this.loggedInStatus.next(true);
+    this.userRole.next(role);
   }
 
   logout(): void {
-    if (this.isLocalStorageAvailable()) {
+    if (this.isBrowser()) {
       localStorage.removeItem('isLoggedIn');
       localStorage.removeItem('userRole');
       localStorage.removeItem('userEmail');
     }
-    this.isLoggedIn = false;
-    this.userRole = null;
+    this.loggedInStatus.next(false);
+    this.userRole.next(null);
+  }
+
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
 }

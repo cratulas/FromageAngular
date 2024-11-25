@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CommonModule } from '@angular/common'; 
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -15,13 +16,16 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   errorMessage: string = '';
 
-  // Usuarios predefinidos
   defaultUsers = [
     { email: 'usuario@example.com', password: 'usuario123', role: 'usuario' },
     { email: 'admin@example.com', password: 'admin123', role: 'admin' },
   ];
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -38,7 +42,6 @@ export class LoginComponent implements OnInit {
 
     const { email, password } = this.loginForm.value;
 
-    // Combina usuarios predefinidos y almacenados en localStorage
     const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
     const allUsers = [...this.defaultUsers, ...storedUsers];
 
@@ -49,8 +52,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('userRole', user.role);
       localStorage.setItem('userEmail', user.email);
 
-      alert(`¡Bienvenido! Has iniciado sesión como ${user.role}.`);
-      this.router.navigate(['/']); // Navega al inicio
+      this.authService.login(user.role);
+
+      this.router.navigate(['/']);
     } else {
       this.errorMessage = 'Correo electrónico o contraseña incorrectos.';
     }

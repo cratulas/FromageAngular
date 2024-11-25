@@ -1,6 +1,7 @@
-import { RouterModule } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,27 +10,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss'],
   imports: [CommonModule, RouterModule],
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   isLoggedIn = false;
   userRole: string | null = null;
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      this.isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-      this.userRole = localStorage.getItem('userRole');
-    }
+    this.authService.loggedInStatus$.subscribe((status: boolean) => {
+      this.isLoggedIn = status;
+    });
+
+    this.authService.userRole$.subscribe((role: string | null) => {
+      this.userRole = role;
+    });
   }
 
   logout(): void {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('userRole');
-      localStorage.removeItem('userEmail');
-    }
-    this.isLoggedIn = false;
-    this.userRole = null;
+    this.authService.logout();
     window.location.reload();
   }
 }
