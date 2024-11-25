@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   private loggedInStatus = new BehaviorSubject<boolean>(false);
   private userRole = new BehaviorSubject<string | null>(null);
+  public popupTrigger$ = new Subject<void>();
 
   loggedInStatus$ = this.loggedInStatus.asObservable();
   userRole$ = this.userRole.asObservable();
@@ -27,6 +28,7 @@ export class AuthService {
     }
     this.loggedInStatus.next(true);
     this.userRole.next(role);
+    this.popupTrigger$.next(); // Disparar el popup
   }
 
   logout(): void {

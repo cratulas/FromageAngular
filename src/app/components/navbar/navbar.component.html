@@ -14,17 +14,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="/profile">Modificar Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shop">Tienda</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="/orders">Mis Órdenes</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="/cart">Mi Carrito</a>
+        </li>
         <li class="nav-item" *ngIf="!isLoggedIn">
           <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
         </li>
         <li class="nav-item" *ngIf="!isLoggedIn">
           <a class="nav-link" routerLink="/register">Registrarse</a>
         </li>
-        <li class="nav-item" *ngIf="isLoggedIn && userRole === 'admin'">
+        <li class="nav-item" *ngIf="isAdmin">
           <a class="nav-link" routerLink="/admin">Panel de Administrador</a>
-        </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link" routerLink="/profile">Perfil</a>
         </li>
         <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link" (click)="logout()">Cerrar Sesión</a>
@@ -33,3 +42,9 @@
     </div>
   </div>
 </nav>
+
+<!-- Popup de inicio de sesión -->
+<div *ngIf="showPopup" class="alert alert-success alert-dismissible fade show popup" role="alert">
+  <strong>¡Bienvenido!</strong> Has iniciado sesión como {{ userRole }}.
+  <button type="button" class="btn-close" aria-label="Close" (click)="closePopup()"></button>
+</div>
