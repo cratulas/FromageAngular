@@ -1,1 +1,74 @@
-<p>profile works!</p>
+<div class="container">
+    <div class="row justify-content-center align-items-center min-vh-100">
+      <div class="col-md-6 col-lg-4">
+        <h2 class="text-center mb-4">Modificar Perfil</h2>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre Completo</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': profileForm.get('name')?.invalid && profileForm.get('name')?.touched
+              }"
+            />
+            <div class="invalid-feedback" *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
+              Por favor, ingresa un nombre válido.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              formControlName="email"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': profileForm.get('email')?.invalid && profileForm.get('email')?.touched
+              }"
+            />
+            <div class="invalid-feedback" *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+              Por favor, ingresa un correo válido.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Contraseña Nueva</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': profileForm.get('password')?.invalid && profileForm.get('password')?.touched
+              }"
+            />
+            <div class="form-text">
+              Debe contener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.
+            </div>
+            <div class="invalid-feedback" *ngIf="profileForm.get('password')?.invalid && profileForm.get('password')?.touched">
+              Contraseña inválida.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirmar Contraseña</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              class="form-control"
+              [ngClass]="{
+                'is-invalid': profileForm.get('confirmPassword')?.invalid && profileForm.get('confirmPassword')?.touched
+              }"
+            />
+            <div class="invalid-feedback" *ngIf="profileForm.get('confirmPassword')?.invalid && profileForm.get('confirmPassword')?.touched">
+              Las contraseñas no coinciden.
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary w-100" [disabled]="profileForm.invalid">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
