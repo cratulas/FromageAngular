@@ -1,0 +1,42 @@
+<div class="container my-5">
+    <h2 class="text-center mb-4">Gestión de Productos</h2>
+  
+    <!-- Formulario para agregar/editar producto -->
+    <form [formGroup]="productForm" (ngSubmit)="saveProduct()" class="mb-5">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nombre</label>
+        <input formControlName="name" id="name" type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Precio</label>
+        <input formControlName="price" id="price" type="number" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="img" class="form-label">URL de Imagen</label>
+        <input formControlName="img" id="img" type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Descripción</label>
+        <textarea formControlName="description" id="description" class="form-control"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar Producto</button>
+      <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Cancelar</button>
+    </form>
+  
+    <!-- Lista de productos -->
+    <div class="row">
+      <div class="col-md-4" *ngFor="let product of products">
+        <div class="card mb-3">
+          <img [src]="product.img" class="card-img-top" [alt]="product.name" />
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.description }}</p>
+            <p class="card-text text-primary">${{ product.price }}</p>
+            <button class="btn btn-warning me-2" (click)="editProduct(product)">Editar</button>
+            <button class="btn btn-danger" (click)="deleteProduct(product.id)">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

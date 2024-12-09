@@ -35,6 +35,9 @@
         <li class="nav-item" *ngIf="isAdmin">
           <a class="nav-link" routerLink="/admin">Panel de Administrador</a>
         </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link" routerLink="/products">Gestión de Productos</a>
+        </li>        
         <li class="nav-item" *ngIf="isLoggedIn">
           <a class="nav-link" (click)="logout()">Cerrar Sesión</a>
         </li>

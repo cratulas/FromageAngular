@@ -14,6 +14,8 @@ import { Noticia3Component } from './pages/noticia3/noticia3.component';
 import { OrderTrackingComponent } from './pages/order-tracking/order-tracking.component';
 import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { ProductManagementComponent } from './pages/product-management/product-management.component';
+
 
 
 export const routes: Routes = [
@@ -32,6 +34,11 @@ export const routes: Routes = [
     { path: 'orders', component: OrdersComponent },
     { path: 'order-tracking/:id', component: OrderTrackingComponent },
     { path: 'cart', component: CartComponent },
+    {
+        path: 'products',
+        component: ProductManagementComponent,
+        runGuardsAndResolvers: 'always', // Asegura recarga de la ruta
+    },
     { path: '**', redirectTo: '' }
 
 ];
