@@ -32,7 +32,7 @@ export class ProductManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Escuchar eventos de navegación
+    
     this.route.params.subscribe(() => {
       this.fetchProducts();
     });

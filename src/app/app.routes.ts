@@ -37,7 +37,7 @@ export const routes: Routes = [
     {
         path: 'products',
         component: ProductManagementComponent,
-        runGuardsAndResolvers: 'always', // Asegura recarga de la ruta
+        runGuardsAndResolvers: 'always',
     },
     { path: '**', redirectTo: '' }
 

@@ -15,7 +15,7 @@ export class ProductService {
   }
 
   addProduct(product: any): Observable<any> {
-    // Simular POST (modificar esta parte si usas un backend real)
+    //  POST
     console.log('Simulando POST para producto:', product);
     return new Observable((observer) => {
       observer.next(product);
@@ -24,7 +24,7 @@ export class ProductService {
   }
 
   updateProduct(id: number, product: any): Observable<any> {
-    // Simular PUT (modificar esta parte si usas un backend real)
+    //  PUT 
     console.log('Simulando PUT para producto:', product);
     return new Observable((observer) => {
       observer.next(product);
@@ -33,7 +33,7 @@ export class ProductService {
   }
 
   deleteProduct(id: number): Observable<any> {
-    // Simular DELETE (modificar esta parte si usas un backend real)
+    // DELETE 
     console.log('Simulando DELETE para producto con ID:', id);
     return new Observable((observer) => {
       observer.next({ success: true });
