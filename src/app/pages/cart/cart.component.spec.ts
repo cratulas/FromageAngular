@@ -1,13 +1,19 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { CartComponent } from './cart.component';
+import { RouterTestingModule } from '@angular/router/testing'; 
+import { HttpClientTestingModule } from '@angular/common/http/testing'; 
 
 describe('CartComponent', () => {
   let component: CartComponent;
-  let fixture: ComponentFixture<CartComponent>;
+  let fixture: any;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CartComponent],
+      imports: [
+        CartComponent, 
+        RouterTestingModule, 
+        HttpClientTestingModule,
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CartComponent);
@@ -30,5 +36,6 @@ describe('CartComponent', () => {
     ];
     component.removeFromCart(0);
     expect(component.cart.length).toBe(1);
+    expect(component.cart[0].name).toBe('Queso Brie');
   });
 });

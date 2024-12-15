@@ -1,20 +1,24 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { ProductManagementComponent } from './product-management.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProductManagementComponent', () => {
   let component: ProductManagementComponent;
-  let fixture: ComponentFixture<ProductManagementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProductManagementComponent]
-    })
-    .compileComponents();
+      imports: [
+        ProductManagementComponent,
+        ReactiveFormsModule,
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(ProductManagementComponent);
+    const fixture = TestBed.createComponent(ProductManagementComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

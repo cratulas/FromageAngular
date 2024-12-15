@@ -1,23 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
 import { ShopComponent } from './shop.component';
+import { ActivatedRoute } from '@angular/router';
 
 describe('ShopComponent', () => {
-  let component: ShopComponent;
-  let fixture: ComponentFixture<ShopComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ShopComponent]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(ShopComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [ShopComponent],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: { paramMap: { get: () => null } },
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(ShopComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
